@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button-layout {
+    @apply !w-[12.5%]
+  }
+  .required-label{
+    @apply text-red-500
+  }
+  .label-text{
+    @apply  text-base md:text-lg lg:text-xl
+  }
+  .error-input {
+    @apply !text-red-500 !border-red-500;
+  }
+  .error-message {
+    @apply text-red-500 text-sm
+  }
+}

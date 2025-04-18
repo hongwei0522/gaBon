@@ -1,0 +1,99 @@
+/* You can add global styles to this file, and also import other style files */
+@use "primeicons/primeicons.css";
+@use "@/assets/layout/layout.scss";
+@use "@/assets/demo/demo.scss";
+
+.p-datatable-column-header-content {
+  display: block !important;
+  border: none !important;
+}
+
+.layout-card-transparent .card {
+  border: none !important;
+}
+
+// .p-scrolltop {
+//   padding: 25px !important;
+//   background-color: #000 !important;
+// }
+
+@media print {
+  .p-datatable {
+    min-width: auto !important;
+    width: 100% !important;
+    table-layout: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .p-datatable .p-datatable-wrapper {
+    overflow: visible !important;
+  }
+
+  .card {
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .p-datatable td,
+  .p-datatable th {
+    border: 1px solid #ccc !important;
+    padding: 3px 4px !important;
+    text-align: center !important;
+    font-size: 10px !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    max-width: 120px !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tbody tr {
+    page-break-inside: avoid !important;
+  }
+
+  .no-print,
+  .p-paginator,
+  .layout-sidebar,
+  .layout-menu,
+  aside,
+  header {
+    height: auto !important;
+  }
+
+  @media print {
+    .no-print,
+    .p-paginator,
+    .layout-sidebar,
+    .layout-menu,
+    aside,
+    header {
+      display: none !important;
+    }
+  }
+
+  .layout-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
+
+
