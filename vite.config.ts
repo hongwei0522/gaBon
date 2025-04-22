@@ -5,7 +5,6 @@ import { defineConfig } from 'vite';
 import path from 'path';
 
 export default defineConfig({
-  base: '/gaBon/',
   server: {
     port: 8888,
     strictPort: true, // 開啟嚴格模式，避免自動切換埠號

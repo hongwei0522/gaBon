@@ -11,7 +11,7 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <ul class="space-y-4">
-        <li v-for="merchant in merchants" :key="merchant.id" class="border p-4 rounded-md shadow">
+        <li v-for="merchant in merchants" :key="merchant.merchant_id" class="border p-4 rounded-md shadow">
           <h3 class="text-lg font-semibold">{{ merchant.name }}</h3>
           <p>統一編號：{{ merchant.business_id }}</p>
           <p>狀態：{{ merchant.status }}</p>
@@ -29,7 +29,7 @@
           <!-- 🔹 獲取詳情按鈕 -->
           <button
             class="mt-2 mr-2 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-            @click="fetchMerchantDetail(merchant.id)"
+            @click="fetchMerchantDetail(merchant.merchant_id)"
           >
             獲取商戶詳情
           </button>
@@ -37,7 +37,7 @@
           <!-- 🔹 更新商戶狀態按鈕 -->
           <button
             class="mt-2 mr-2 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
-            @click="updateMerchantStatusButton(merchant.id)"
+            @click="updateMerchantStatusButton(merchant.merchant_id)"
           >
             更新商戶狀態
           </button>
@@ -50,7 +50,7 @@
           <!-- 🔹 更新商戶資料 -->
           <button
             class="mt-2 mr-2 bg-blue-500 hover:bg-green-600 text-white px-3 py-1 rounded"
-            @click="updateMerchantData(merchant.id)"
+            @click="updateMerchantData(merchant.merchant_id)"
           >
             更新商戶資料
           </button>
@@ -58,18 +58,18 @@
           <!-- 🔹 新增商戶管理員按鈕 -->
           <button
             class="mt-2 mr-2 bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded"
-            @click="addMerchantAdmin(merchant.id)"
+            @click="addMerchantAdmin(merchant.merchant_id)"
           >
             新增商戶管理員
           </button>
 
           <!-- 🔹 刪除商戶管理員按鈕 -->
-          <button
+          <!-- <button
             class="mt-2 mr-2 bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded"
-            @click="deleteMerchantAdminButton(merchant.id, merchant.id)"
+            @click="deleteMerchantAdminButton(merchant.merchant_id, merchant.merchant_id)"
           >
             刪除
-          </button>
+          </button> -->
         </li>
       </ul>
 
@@ -119,7 +119,7 @@ import {
   updateMerchantStatus,
   updateMerchant,
   postAddMerchantAdmin,
-  deleteMerchantAdmin,
+  // deleteMerchantAdmin,
 } from '@/api/merchants';
 
 interface MerchantAdmin {
@@ -129,7 +129,7 @@ interface MerchantAdmin {
 }
 
 interface Merchant {
-  id: number;
+  merchant_id: number;
   name: string;
   business_id: string;
   status: string;
@@ -251,18 +251,18 @@ const addMerchantAdmin = async (merchantId: number) => {
 };
 
 // 刪除商戶管理員
-const deleteMerchantAdminButton = async (merchantId: number, userId: number) => {
-  try {
-    loading.value = true;
-    await deleteMerchantAdmin(merchantId, userId);
-    await fetchMerchants();
-    alert('已刪除管理員');
-  } catch (err: any) {
-    alert('刪除失敗：' + (err.message || ''));
-  } finally {
-    loading.value = false;
-  }
-};
+// const deleteMerchantAdminButton = async (merchantId: number, userId: number) => {
+//   try {
+//     loading.value = true;
+//     await deleteMerchantAdmin(merchantId, userId);
+//     await fetchMerchants();
+//     alert('已刪除管理員');
+//   } catch (err: any) {
+//     alert('刪除失敗：' + (err.message || ''));
+//   } finally {
+//     loading.value = false;
+//   }
+// };
 
 onMounted(async () => {
   fetchMerchants();

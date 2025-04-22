@@ -17,6 +17,11 @@ const model = ref([
         icon: 'pi pi-fw pi-warehouse',
         to: '/employees',
       },
+      {
+        label: '檔案上傳',
+        icon: 'pi pi-fw pi-warehouse',
+        to: '/upload',
+      },
     ],
   },
 

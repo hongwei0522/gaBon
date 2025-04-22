@@ -15,7 +15,7 @@
     <!-- 顯示員工列表 -->
     <div v-else>
       <ul class="space-y-4">
-        <li v-for="employee in employees" :key="employee.id" class="border p-4 rounded-md shadow">
+        <li v-for="employee in employees" :key="employee.merchant_id" class="border p-4 rounded-md shadow">
           <h3 class="text-lg font-semibold">{{ employee.username }}</h3>
           <p>職位：{{ employee.role }}</p>
           <p>部門：{{ employee.department.name }}</p>
@@ -24,7 +24,7 @@
           <p>狀態：{{ employee.status }}</p>
           <p>商戶名稱：{{ employee.merchant.name }}</p>
           <button
-            @click="fetchEmployeeDetail(employee.id)"
+            @click="fetchEmployeeDetail(employee.user_id)"
             class="mt-2 mr-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
           >
             獲取員工詳情
@@ -32,7 +32,7 @@
 
           <!-- 更新員工按鈕 -->
           <button
-            @click="updateEmployeeInfo(employee.id)"
+            @click="updateEmployeeInfo(employee.user_id)"
             class="mt-2 bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded ml-2"
           >
             更新員工訊息
@@ -40,7 +40,7 @@
 
           <!-- 刪除員工按鈕 -->
           <button
-            @click="deleteEmployeeById(employee.id)"
+            @click="deleteEmployeeById(employee.user_id)"
             class="mt-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded ml-2"
           >
             刪除員工
@@ -74,18 +74,31 @@ import { ref, onMounted } from 'vue';
 import { getEmployees, getEmployeeDetail, createEmployee, updateEmployee, deleteEmployee } from '@/api/employees';
 
 interface Employee {
-  id: number;
+  user_id: number;
+  merchant_id: number;
+  department_id: number;
   username: string;
-  role: string;
-  department: {
-    name: string;
-  };
   email: string;
   phone: string;
+  role: string;
+  permission_level: number;
   status: string;
+  created_at: string;
+  updated_at: string;
   merchant: {
+    merchant_id: number;
     name: string;
   };
+  department: {
+    department_id: number;
+    name: string;
+  };
+  position: {
+    position_id: number;
+    name: string;
+    level: number;
+    description: string;
+  } | null;
 }
 
 const employees = ref<Employee[]>([]);
@@ -156,9 +169,9 @@ const createNewEmployee = async () => {
 const updateEmployeeInfo = async (employeeId: number) => {
   try {
     const payload = {
-      username: '更新後的姓名',
-      email: 'updated.email@example.com',
-      phone: '0987654321',
+      username: 'test',
+      email: 'test.email@example.com',
+      phone: '0919293949',
       role: 'USER',
       position_id: 3,
       department_id: 3,

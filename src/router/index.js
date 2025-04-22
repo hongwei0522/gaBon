@@ -49,6 +49,20 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/',
+    component: AppLayout,
+    children: [
+      {
+        path: '/upload',
+        name: 'upload',
+        meta: {
+          breadcrumb: ['測試用模組', '檔案上傳'],
+        },
+        component: () => import('../views/upload.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
