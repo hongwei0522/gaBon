@@ -63,6 +63,20 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/',
+    component: AppLayout,
+    children: [
+      {
+        path: '/positionLevels',
+        name: 'positionLevels',
+        meta: {
+          breadcrumb: ['測試用模組', '職位等級管理'],
+        },
+        component: () => import('../views/positionLevels.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({

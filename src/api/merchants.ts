@@ -11,10 +11,14 @@ export const getMerchants = () => {
 export const postMerchant = (data: {
   name: string;
   business_id: string;
-  contact_name: string;
-  contact_email: string;
-  contact_phone: string;
+  contact_name_1: string;
+  contact_email_1: string;
+  contact_phone_1: string;
+  contact_name_2: string;
+  contact_email_2: string;
+  contact_phone_2: string;
   address: string;
+  settings: {};
 }) => {
   return http.post(groupPath, data);
 };
@@ -47,10 +51,14 @@ export const updateMerchant = (
 };
 
 // 新增商戶管理員
-export const postAddMerchantAdmin = (merchant_id: number) => {
-  return http.post(`${groupPath}/${merchant_id}/admins`, {
-    merchant_id,
-  });
+export const postAddMerchantAdmin = (
+  merchant_id: number,
+  data: {
+    user_id: number;
+    role: string;
+  }
+) => {
+  return http.post(`${groupPath}/${merchant_id}/admins`, data);
 };
 
 // 刪除商戶管理員

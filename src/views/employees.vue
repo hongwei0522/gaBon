@@ -45,6 +45,14 @@
           >
             刪除員工
           </button>
+
+          <!-- 🔹 新增商戶管理員按鈕 -->
+          <button
+            class="mt-2 bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded ml-2"
+            @click="addMerchantAdmin(employee)"
+          >
+            新增商戶管理員
+          </button>
         </li>
       </ul>
     </div>
@@ -72,7 +80,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { getEmployees, getEmployeeDetail, createEmployee, updateEmployee, deleteEmployee } from '@/api/employees';
-
+import { postAddMerchantAdmin } from '@/api/merchants';
 interface Employee {
   user_id: number;
   merchant_id: number;
@@ -200,6 +208,28 @@ const deleteEmployeeById = async (employeeId: number) => {
   } catch (error: any) {
     alert('刪除失敗：' + (error.response?.data?.message || error.message));
     console.error(error);
+  }
+};
+
+// 新增商戶管理員
+const addMerchantAdmin = async (employee) => {
+  // 總共會有三種角色
+  // SUPER_ADMIN
+  // MERCHANT_ADMIN
+  // USER
+  try {
+    loading.value = true;
+    const adminData = {
+      user_id: employee.user_id,
+      role: 'MERCHANT_ADMIN',
+    };
+    await postAddMerchantAdmin(employee.merchant_id, adminData);
+    await fetchEmployees(page.value);
+    alert('新增管理員成功');
+  } catch (err: any) {
+    alert('新增失敗：' + (err.message || ''));
+  } finally {
+    loading.value = false;
   }
 };
 

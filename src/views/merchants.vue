@@ -56,12 +56,12 @@
           </button>
 
           <!-- 🔹 新增商戶管理員按鈕 -->
-          <button
+          <!-- <button
             class="mt-2 mr-2 bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded"
-            @click="addMerchantAdmin(merchant.merchant_id)"
+            @click="addMerchantAdmin(merchant)"
           >
             新增商戶管理員
-          </button>
+          </button> -->
 
           <!-- 🔹 刪除商戶管理員按鈕 -->
           <!-- <button
@@ -118,7 +118,7 @@ import {
   getMerchantDetail,
   updateMerchantStatus,
   updateMerchant,
-  postAddMerchantAdmin,
+  // postAddMerchantAdmin,
   // deleteMerchantAdmin,
 } from '@/api/merchants';
 
@@ -169,12 +169,26 @@ const createMerchant = async () => {
   try {
     loading.value = true;
     const payload = {
-      name: '西打藍好內容2',
-      business_id: '93662834',
-      contact_name: 'frank2',
-      contact_email: 'sida.test03@gmail.com',
-      contact_phone: '0912345678',
-      address: '基隆市 XXXXX',
+      // name: '測試用戶',
+      // business_id: '12345678',
+      // contact_name_1: '測試1',
+      // contact_email_1: 'use1@example.com',
+      // contact_phone_1: '0912345678',
+      // contact_name_2: '測試2',
+      // contact_email_2: 'use2@example.com',
+      // contact_phone_2: '0812345678',
+      // address: '西打藍好內容',
+      // settings: {},
+      name: '測試用戶2',
+      business_id: '22345678',
+      contact_name_1: '測試3',
+      contact_email_1: 'use3@example.com',
+      contact_phone_1: '0712345678',
+      contact_name_2: '測試4',
+      contact_email_2: 'use4@example.com',
+      contact_phone_2: '0612345678',
+      address: '西打藍好內容',
+      settings: {},
     };
     await postMerchant(payload);
     await fetchMerchants();
@@ -236,21 +250,29 @@ const updateMerchantData = async (id: number) => {
   }
 };
 
-// 新增商戶管理員
-const addMerchantAdmin = async (merchantId: number) => {
-  try {
-    loading.value = true;
-    await postAddMerchantAdmin(merchantId);
-    await fetchMerchants();
-    alert('新增管理員成功');
-  } catch (err: any) {
-    alert('新增失敗：' + (err.message || ''));
-  } finally {
-    loading.value = false;
-  }
-};
+// // 新增商戶管理員
+// const addMerchantAdmin = async (merchant) => {
+//   // 總共會有三種角色
+//   // SUPER_ADMIN
+//   // MERCHANT_ADMIN
+//   // USER
+//   try {
+//     loading.value = true;
+//     const adminData = {
+//       user_id: merchant.admins[0].user_id,
+//       role: 'SUPER_ADMIN',
+//     };
+//     await postAddMerchantAdmin(merchant.merchant_id, adminData);
+//     await fetchMerchants();
+//     alert('新增管理員成功');
+//   } catch (err: any) {
+//     alert('新增失敗：' + (err.message || ''));
+//   } finally {
+//     loading.value = false;
+//   }
+// };
 
-// 刪除商戶管理員
+// // 刪除商戶管理員
 // const deleteMerchantAdminButton = async (merchantId: number, userId: number) => {
 //   try {
 //     loading.value = true;

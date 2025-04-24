@@ -22,6 +22,11 @@ const model = ref([
         icon: 'pi pi-fw pi-warehouse',
         to: '/upload',
       },
+      {
+        label: '職位等級管理',
+        icon: 'pi pi-fw pi-warehouse',
+        to: '/positionLevels',
+      },
     ],
   },
 
