@@ -77,6 +77,34 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/',
+    component: AppLayout,
+    children: [
+      {
+        path: '/tasks',
+        name: 'tasks',
+        meta: {
+          breadcrumb: ['測試用模組', '任務管理'],
+        },
+        component: () => import('../views/tasks.vue'),
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: AppLayout,
+    children: [
+      {
+        path: '/rewards',
+        name: 'rewards',
+        meta: {
+          breadcrumb: ['測試用模組', '獎勵管理'],
+        },
+        component: () => import('../views/rewards.vue'),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({

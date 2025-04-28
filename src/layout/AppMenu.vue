@@ -27,6 +27,16 @@ const model = ref([
         icon: 'pi pi-fw pi-warehouse',
         to: '/positionLevels',
       },
+      {
+        label: '任務管理',
+        icon: 'pi pi-fw pi-warehouse',
+        to: '/tasks',
+      },
+      {
+        label: '獎勵管理',
+        icon: 'pi pi-fw pi-warehouse',
+        to: '/rewards',
+      },
     ],
   },
 
